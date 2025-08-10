@@ -1,97 +1,138 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# JobsFeed - React Native Mobile App
 
-# Getting Started
+This project is a mobile application for browsing job listings, built as a submission for the React Native Intern Assignment. The app is designed with a modern, clean, and attractive user interface and is built following best practices for code quality, folder structure, and reusability.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+The application features a native splash screen, a home feed to display jobs, and a settings screen. It uses a mock data source to simulate a real-world backend.
 
-## Step 1: Start Metro
+## Screenshots
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+| Splash Screen                               | Home Feed                                 | Settings                                  |
+| ------------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| ![Splash Screen](screenshots/splash.png) | ![Home Feed](screenshots/home.png) | ![Settings](screenshots/settings.png) |
 
-```sh
-# Using npm
-npm start
+## Features
 
-# OR using Yarn
-yarn start
+-   **True Native Splash Screen:** A professional, native launch screen with a custom logo that prevents any white flash on startup.
+-   **Dynamic Job Feed:** A scrollable home screen that displays a list of jobs from a mock data source.
+-   **Modern UI/UX:** A "posh" and attractive design with a clean color palette, proper spacing, and reusable components.
+-   **Apply Once Logic:** Users can apply for a job only once. The "Apply Now" button becomes disabled and changes its style after a job has been applied for.
+-   **Tab-Based Navigation:** Simple and intuitive navigation between the Home and Settings screens.
+-   **Visible Icons:** All icons are correctly linked and visible on Android.
+-   **Optimized for Release:** The final APK is optimized for size by splitting builds per architecture and selectively bundling only the necessary assets.
+
+## Tech Stack
+
+-   **Core:** React Native
+-   **Navigation:** React Navigation (Stack Navigator, Bottom Tab Navigator)
+-   **UI Components:** Reusable custom components (Card, Button, Header).
+-   **Icons:** `react-native-vector-icons`
+-   **Native Splash Screen:** `react-native-splash-screen`
+-   **Language:** JavaScript (ES6+), Kotlin (for Android native modules)
+-   **Build Tool:** Gradle
+
+## Folder Structure
+
+The project follows a modular and scalable folder structure to ensure code quality and maintainability.
+
+```
+your-project-name/
+├── src/
+│   ├── api/
+│   │   └── mockData.js         # Dummy data for the app
+│   ├── assets/
+│   │   └── images/             # App logo and other images
+│   ├── components/
+│   │   ├── common/             # Reusable components (Button, Card, Header)
+│   │   └── ...                 # Feature-specific components
+│   ├── navigation/
+│   │   └── AppNavigator.js       # Navigation logic (Stack/Tabs)
+│   ├── screens/
+│   │   ├── auth/
+│   │   │   └── SplashScreen.js   # Logic to hide native splash screen
+│   │   └── main/
+│   │       ├── HomeScreen.js
+│   │       └── SettingsScreen.js
+│   ├── styles/
+│   │   ├── colors.js           # Centralized color palette
+│   │   └── typography.js       # Centralized font styles
+│   └── utils/
+│       └── helpers.js          # Utility functions
+└── App.js
 ```
 
-## Step 2: Build and run your app
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+## Setup and Installation
 
-### Android
+### Prerequisites
 
-```sh
-# Using npm
-npm run android
+-   [Node.js](https://nodejs.org/) (LTS version recommended)
+-   [JDK (Java Development Kit)](https://www.oracle.com/java/technologies/downloads/) (Version 17 recommended)
+-   [Android Studio](https://developer.android.com/studio) (for Android SDK and emulator)
+-   React Native development environment. Follow the official guide for [setting up the development environment](https://reactnative.dev/docs/environment-setup).
 
-# OR using Yarn
-yarn android
-```
+### Installation Steps
 
-### iOS
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/namanabbad02/JobsFeed.git
+    ```
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+2.  **Navigate to the project directory:**
+    ```bash
+    cd src
+    ```
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+3.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-```sh
-bundle install
-```
+4.  **iOS Setup:**
+    ```bash
+    cd ios && pod install
+    ```
 
-Then, and every time you update your native dependencies, run:
+5.  **Android Setup (Crucial Step):**
+    Create a file named `local.properties` inside the `android` folder with the following content, pointing to your Android SDK location:
+    ```properties
+    # For Windows (use double backslashes)
+    sdk.dir = C:\\Users\\YOUR_USERNAME\\AppData\\Local\\Android\\Sdk
 
-```sh
-bundle exec pod install
-```
+    # For macOS/Linux
+    # sdk.dir = /Users/YOUR_USERNAME/Library/Android/sdk
+    ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+## Available Scripts
 
-```sh
-# Using npm
-npm run ios
+### `npm start`
 
-# OR using Yarn
-yarn ios
-```
+Runs the Metro bundler, which serves the JavaScript bundle to your app.
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+### `npx react-native run-android`
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+Builds the app and installs it on a connected Android emulator or physical device.
 
-## Step 3: Modify your app
+### `npx react-native run-ios`
 
-Now that you have successfully run the app, let's make changes!
+Builds the app and installs it on a connected iOS simulator or physical device (macOS only).
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+## Generating a Release APK
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+To generate a shareable, optimized APK file for Android:
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+1.  Navigate to the `android` directory:
+    ```bash
+    cd android
+    ```
 
-## Congratulations! :tada:
+2.  Run the `assembleRelease` command:
+    ```bash
+    # For Windows
+    gradlew.bat assembleRelease
 
-You've successfully run and modified your React Native App. :partying_face:
+    # For macOS/Linux
+    ./gradlew assembleRelease
+    ```
 
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+The generated APK files (e.g., `app-arm64-v8a-release.apk`) will be available in `android/app/build/outputs/apk/release/`.
