@@ -36,7 +36,7 @@ The application features a native splash screen, a home feed to display jobs, an
 The project follows a modular and scalable folder structure to ensure code quality and maintainability.
 
 ```
-your-project-name/
+JobsFeed/
 ├── src/
 │   ├── api/
 │   │   └── mockData.js         # Dummy data for the app
